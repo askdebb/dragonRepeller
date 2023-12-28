@@ -13,7 +13,10 @@ const text = document.querySelector("#text");
 const xpText = document.querySelector("#xpText");
 const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
+
+// to display monster information as its currently displayed none in css
 const monsterStats = document.querySelector("#monsterStats");
+
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 const weapons = [
@@ -143,6 +146,8 @@ function buyWeapon() {
       gold -= 30;
       currentWeapon++;
       goldText.innerText = gold;
+
+      // value of currentWeapon is used as index of the objects in weapons array
       let newWeapon = weapons[currentWeapon].name;
       text.innerText = "You now have a " + newWeapon + ".";
       inventory.push(newWeapon);
@@ -170,6 +175,20 @@ function sellWeapon() {
 }
 
 function fightSlime() {
+
+  /*
+    fighting variables assigned with numbers and the rationale behind it
+
+    is used to tell which monster you are fighting with
+    the name of the function tells it all
+    the numbers assigned to fighting will be used to access each
+    monster as objects in the array.
+    Meaning the array is made of objects and the objects can be accessed 
+    with their indexes, this then gives the chance to use the dot notation
+    to access the values of the object's properties.
+
+    the object accessing concept is applied to fightSlime(), fightBeast() and fightDragon().
+   */
   fighting = 0;
   goFight();
 }
@@ -185,6 +204,12 @@ function fightDragon() {
 }
 
 function goFight() {
+  /*
+    locations[?] is an array with objects in it.
+    the objects are called with the numbers that represent their indexes
+    this arguement is then passed to update(), that goes to populate the field of the 
+    features as designed with HTML, thus text, buttons (DOM)
+  */
   update(locations[3]);
   monsterHealth = monsters[fighting].health;
   monsterStats.style.display = "block";
